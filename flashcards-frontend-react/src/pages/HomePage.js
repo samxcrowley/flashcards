@@ -1,17 +1,8 @@
 import React from "react";
-
-function Home() {
-
-    return(
-        <div className="bg-slate-50 h-screen">
-            
-        </div>
-    );
-
-}
+import DeckList from "../components/DeckList";
 
 const HomePage = () => {
-    return <Home />;
+    return <DeckList />;
 };
 
 export default HomePage;

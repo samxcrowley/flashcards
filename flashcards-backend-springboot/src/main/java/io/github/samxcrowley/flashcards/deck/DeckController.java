@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/deck")
 public class DeckController {
