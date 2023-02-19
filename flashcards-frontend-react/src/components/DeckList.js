@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class DeckList extends React.Component {
@@ -8,7 +9,7 @@ export default class DeckList extends React.Component {
     }
     
     componentDidMount() {
-        axios.get("http://localhost:8080/api/v1/deck")
+        axios.get("/api/v1/deck")
             .then(response => {
                 this.setState({decks: response.data});
             });
@@ -17,7 +18,7 @@ export default class DeckList extends React.Component {
     renderDecks() {
         if (this.state.decks === null || this.state.decks.length === 0) {
             return(
-                <div className="py-16 text-xl">No decks created yet.</div>
+                <div className="py-16 text-black text-xl">No decks created yet.</div>
             );
         } else {
             return(
@@ -25,11 +26,13 @@ export default class DeckList extends React.Component {
                     {this.state.decks.map((value, key) => {
                         return (
                             <tr key={key}>
-                                <div className="bg-orange-50 px-5 pb-4 pt-5 rounded mx-3 my-3 shadow-md w-72">
+                                <div className="bg-myorange-200 px-5 pb-4 pt-5 rounded mx-3 my-3 shadow-md w-72">
                                     <p className="text-black text-xl font-semibold pb-2">{value.name}</p>
                                     <p className="text-black">Number of cards: {value.numCards}</p>
                                     <p className="text-black">Last studied on {value.lastStudied}</p>
-                                    <button className="text-right font-semibold bg-orange-800 px-5 mt-3 h-8 text-white rounded">Study</button>
+                                    <Link to="/card">
+                                        <button className="text-right font-semibold bg-myorange-500 px-5 mt-3 h-8 text-black rounded">Study</button>
+                                    </Link>
                                 </div>
                             </tr>
                         );
@@ -41,13 +44,8 @@ export default class DeckList extends React.Component {
 
     render() {
         return(
-            <div className="bg-orange-200 h-screen">
-                <div className="flex flex-col py-24 justify-center">
-                    <div className="text-black text-3xl font-semibold">
-                        Your decks
-                    </div>
-                    {this.renderDecks()}
-                </div>
+            <div>
+                {this.renderDecks()}
             </div>
         );
     }

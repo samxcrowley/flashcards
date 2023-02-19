@@ -4,9 +4,9 @@ export default class Card extends React.Component {
 
     render() {
         return(
-            <div className="rounded mx-3 my-3 shadow-sm bg-slate-500 w-128 h-64 grid grid-rows content-center gap-4">
+            <div className="rounded mx-3 my-3 shadow-sm bg-myorange-900 w-128 h-64 grid grid-rows content-center gap-4">
                 <div className="text-white text-2xl">{this.props.frontText}</div>
-                <div className="text-gray-100 text-2xl">{this.props.flipped ? this.props.backText : " "}</div>
+                <div className="text-white text-2xl">{this.props.flipped ? this.props.backText : " "}</div>
             </div>
         );
     }
