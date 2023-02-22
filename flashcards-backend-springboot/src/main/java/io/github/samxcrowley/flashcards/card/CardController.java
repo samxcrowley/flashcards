@@ -16,12 +16,12 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @GetMapping("/decks/{deckId}/cards")
+    @GetMapping("/api/decks/{deckId}/cards")
     public List<Card> getAllCardsByDeckId(@PathVariable(value = "deckId") Long deckId) {
         return cardService.getAllCardsByDeckId(deckId);
     }
 
-    @PostMapping("/decks/{deckId}/cards")
+    @PostMapping("/api/decks/{deckId}/cards")
     public void addNewCard(@PathVariable(value = "deckId") Long deckId, @RequestBody Card card) {
         cardService.addNewCard(deckId, card);
     }

@@ -16,17 +16,17 @@ public class DeckController {
         this.deckService = deckService;
     }
 
-    @GetMapping("/decks")
+    @GetMapping("/api/decks")
     public List<Deck> getAllDecks() {
         return deckService.getAllDecks();
     }
 
-    @PostMapping("/decks")
+    @PostMapping("/api/decks")
     public void addNewDeck(@RequestBody Deck deck) {
         deckService.addNewDeck(deck);
     }
 
-    @DeleteMapping("/decks/{deckId}")
+    @DeleteMapping("/api/decks/{deckId}")
     public void deleteDeck(@PathVariable Long deckId) {
         deckService.deleteDeck(deckId);
     }
