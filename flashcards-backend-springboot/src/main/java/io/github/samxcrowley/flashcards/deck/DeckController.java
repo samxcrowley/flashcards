@@ -7,7 +7,6 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = "api/v1/deck")
 public class DeckController {
 
     private final DeckService deckService;
@@ -17,14 +16,19 @@ public class DeckController {
         this.deckService = deckService;
     }
 
-    @GetMapping
-    public List<Deck> getDecks() {
-        return deckService.getDecks();
+    @GetMapping("/decks")
+    public List<Deck> getAllDecks() {
+        return deckService.getAllDecks();
     }
 
     @PostMapping
     public void addNewDeck(@RequestBody Deck deck) {
         deckService.addNewDeck(deck);
+    }
+
+    @DeleteMapping("/decks/{deckId}")
+    public void deleteDeck(@PathVariable Long deckId) {
+        deckService.deleteDeck(deckId);
     }
 
 }

@@ -1,28 +1,19 @@
 package io.github.samxcrowley.flashcards.deck;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import io.github.samxcrowley.flashcards.card.Card;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
 public class Deck {
 
     @Id
-    @SequenceGenerator(
-            name = "deck_sequence",
-            sequenceName = "deck_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "deck_sequence"
-    )
+    @SequenceGenerator(name = "deck_sequence", sequenceName = "deck_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deck_sequence")
     private Long id;
     private String name;
     private LocalDate lastStudied;
