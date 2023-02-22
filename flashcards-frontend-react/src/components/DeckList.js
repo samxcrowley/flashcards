@@ -9,16 +9,16 @@ export default class DeckList extends React.Component {
     }
     
     componentDidMount() {
-        axios.get("/api/v1/deck")
+        axios.get("/decks/")
             .then(response => {
                 this.setState({decks: response.data});
             });
     }
 
     renderDecks() {
-        if (this.state.decks === null || this.state.decks.length === 0) {
+        if (this.state.decks.length === 0) {
             return(
-                <div className="py-16 text-black text-xl">No decks created yet.</div>
+                <div className="py-16 text-black text-xl">No decks found.</div>
             );
         } else {
             return(
