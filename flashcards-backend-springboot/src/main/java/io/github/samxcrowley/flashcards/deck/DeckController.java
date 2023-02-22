@@ -21,7 +21,7 @@ public class DeckController {
         return deckService.getAllDecks();
     }
 
-    @PostMapping
+    @PostMapping("/decks")
     public void addNewDeck(@RequestBody Deck deck) {
         deckService.addNewDeck(deck);
     }

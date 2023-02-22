@@ -1,11 +1,6 @@
 package io.github.samxcrowley.flashcards.deck;
 
-import io.github.samxcrowley.flashcards.card.Card;
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table
@@ -16,19 +11,16 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deck_sequence")
     private Long id;
     private String name;
-    private LocalDate lastStudied;
 
     public Deck() {}
 
-    public Deck(Long id, String name, LocalDate lastStudied) {
+    public Deck(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.lastStudied = lastStudied;
     }
 
-    public Deck(String name, LocalDate lastStudied) {
+    public Deck(String name) {
         this.name = name;
-        this.lastStudied = lastStudied;
     }
 
     public Long getId() {
@@ -47,20 +39,11 @@ public class Deck {
         this.name = name;
     }
 
-    public LocalDate getLastStudied() {
-        return lastStudied;
-    }
-
-    public void setLastStudied(LocalDate lastStudied) {
-        this.lastStudied = lastStudied;
-    }
-
     @Override
     public String toString() {
         return "Deck{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastStudied=" + lastStudied +
                 '}';
     }
 
