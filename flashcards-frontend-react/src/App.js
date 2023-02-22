@@ -13,7 +13,6 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/card" element={<CardPage />} />
-                    {/* <Route path="/logout" element={<LogoutPage />} /> */}
                 </Routes>
             </div>
         </Router>
