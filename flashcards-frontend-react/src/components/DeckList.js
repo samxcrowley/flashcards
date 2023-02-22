@@ -29,7 +29,9 @@ export default class DeckList extends React.Component {
                                 <p className="text-black text-xl font-semibold mb-5">{value.name}</p>
                                 <p className="text-black mb-5">Number of cards: {value.numCards}</p>
                                 <div className="flex items-center justify-between">
-                                    <button className="text-right font-semibold bg-myorange-600 px-5 mt-3 h-8 text-white rounded">Edit</button>
+                                    <Link to={`/editDeck/${value.id}`}>
+                                        <button className="text-right font-semibold bg-myorange-600 px-5 mt-3 h-8 text-white rounded">Edit</button>
+                                    </Link>
                                     <Link to="/card">
                                         <button className="text-right font-semibold bg-myorange-600 px-5 mt-3 h-8 text-white rounded">Study</button>
                                     </Link>
