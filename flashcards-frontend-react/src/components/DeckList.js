@@ -9,7 +9,7 @@ export default class DeckList extends React.Component {
     }
     
     componentDidMount() {
-        axios.get("/decks/")
+        axios.get("/api/decks")
             .then(response => {
                 this.setState({decks: response.data});
             });
