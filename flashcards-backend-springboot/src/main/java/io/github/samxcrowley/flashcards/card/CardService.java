@@ -29,6 +29,7 @@ public class CardService {
         Optional<Deck> deckOpt = deckRepository.findById(deckId);
         if (deckOpt.isPresent()) {
             Deck deck = deckOpt.get();
+            deck.setNumCards(deck.getNumCards() + 1);
             card.setDeck(deck);
             cardRepository.save(card);
         } else {

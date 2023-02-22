@@ -23,6 +23,7 @@ public class DeckService {
     }
 
     public void addNewDeck(Deck deck) {
+        deck.setNumCards(0);
         deckRepository.save(deck);
     }
 

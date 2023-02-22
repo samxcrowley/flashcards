@@ -11,16 +11,19 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deck_sequence")
     private Long id;
     private String name;
+    private Integer numCards;
 
     public Deck() {}
 
-    public Deck(Long id, String name) {
+    public Deck(Long id, String name, Integer numCards) {
         this.id = id;
         this.name = name;
+        this.numCards = numCards;
     }
 
-    public Deck(String name) {
+    public Deck(String name, Integer numCards) {
         this.name = name;
+        this.numCards = numCards;
     }
 
     public Long getId() {
@@ -39,11 +42,20 @@ public class Deck {
         this.name = name;
     }
 
+    public Integer getNumCards() {
+        return numCards;
+    }
+
+    public void setNumCards(Integer numCards) {
+        this.numCards = numCards;
+    }
+
     @Override
     public String toString() {
         return "Deck{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", numCards=" + numCards +
                 '}';
     }
 
