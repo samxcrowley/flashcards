@@ -34,31 +34,36 @@ function EditDeckPage() {
                 <button className="px-3 mx-3 my-1 rounded bg-slate-600 text-white font-semibold">Add card</button>
             </div>
             <div className="bg-slate-200 border-10 py-5">
-                <table className="m-auto">
-                    <thead>
-                        <tr>
-                            <th>Front text</th>
-                            <th>Back text</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {cards.map((value) => {
-                            return(
-                                <tr className="even:bg-slate-300 text-left">
-                                    <td className="px-5 py-2">{value.frontText}</td>
-                                    <td className="px-5 py-2">{value.backText}</td>
-                                    <td className="px-3 py-2">
-                                        <button className="font-semibold bg-slate-400 rounded text-white px-2">Edit</button>
-                                    </td>
-                                    <td className="px-1 py-2">
-                                        <button className="font-semibold bg-slate-400 rounded text-white px-2">Delete</button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                {cards.length === 0 &&
+                    <div>No cards in this deck yet.</div>
+                }
+                {cards.length > 0 &&
+                    <table className="m-auto">
+                        <thead>
+                            <tr>
+                                <th>Front text</th>
+                                <th>Back text</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cards.map((value) => {
+                                return(
+                                    <tr className="even:bg-slate-300 text-left">
+                                        <td className="px-5 py-2">{value.frontText}</td>
+                                        <td className="px-5 py-2">{value.backText}</td>
+                                        <td className="px-3 py-2">
+                                            <button className="font-semibold bg-slate-400 rounded text-white px-2">Edit</button>
+                                        </td>
+                                        <td className="px-1 py-2">
+                                            <button className="font-semibold bg-slate-400 rounded text-white px-2">Delete</button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                }
             </div>
         </div>
     );
