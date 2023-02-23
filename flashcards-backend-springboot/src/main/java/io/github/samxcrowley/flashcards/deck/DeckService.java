@@ -22,6 +22,15 @@ public class DeckService {
         return deckRepository.findAll();
     }
 
+    public Deck getDeck(Long deckId) {
+        Optional<Deck> toDeleteOpt = deckRepository.findById(deckId);
+        if (toDeleteOpt.isPresent()) {
+            return toDeleteOpt.get();
+        } else {
+            throw new ResourceNotFoundException("Deck with id " + deckId + " not found when attempting to find it.");
+        }
+    }
+
     public void addNewDeck(Deck deck) {
         deck.setNumCards(0);
         deckRepository.save(deck);

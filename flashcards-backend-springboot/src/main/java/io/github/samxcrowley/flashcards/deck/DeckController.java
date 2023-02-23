@@ -21,6 +21,11 @@ public class DeckController {
         return deckService.getAllDecks();
     }
 
+    @GetMapping("/api/decks/{deckId}")
+    public Deck getDeck(@PathVariable Long deckId) {
+        return deckService.getDeck(deckId);
+    }
+
     @PostMapping("/api/decks")
     public void addNewDeck(@RequestBody Deck deck) {
         deckService.addNewDeck(deck);
