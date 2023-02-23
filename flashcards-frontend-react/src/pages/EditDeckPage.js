@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import AddCardForm from "../components/AddCardForm";
 
 function EditDeckPage() {
 
@@ -12,7 +13,6 @@ function EditDeckPage() {
 
         axios.get("/api/decks/" + deckId)
             .then(response => {
-                console.log(response);
                 setDeck(response.data);
             });
 
@@ -21,17 +21,19 @@ function EditDeckPage() {
                 setCards(response.data);
             });
 
-    });
+    }, []);
 
     return(
-        <div className="my-24 pt-4 w-1/2 m-auto bg-slate-100 rounded shadow">
+        <div className="mt-8 pt-4 w-1/2 m-auto bg-slate-100 rounded shadow">
             {deck &&
                 <div className="mb-5 text-2xl font-bold text-slate-800">{deck.name}</div>
             }
             <div className="flex flex-row justify-center mb-5">
                 <button className="px-3 mx-3 my-1 rounded bg-red-400 text-white font-semibold">Delete deck</button>
                 <button className="px-3 mx-3 my-1 rounded bg-slate-600 text-white font-semibold">Edit deck name</button>
-                <button className="px-3 mx-3 my-1 rounded bg-slate-600 text-white font-semibold">Add card</button>
+            </div>
+            <div className="mb-5">
+                <AddCardForm />
             </div>
             <div className="bg-slate-200 border-10 py-5">
                 {cards.length === 0 &&
