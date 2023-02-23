@@ -1,2 +1,3 @@
 .DS_Store
 flashcards-frontend-react/node_modules/
+flashcards-backend-springboot/src/main/resources/application.properties
