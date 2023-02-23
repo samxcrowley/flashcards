@@ -26,4 +26,9 @@ public class CardController {
         cardService.addNewCard(deckId, card);
     }
 
+    @DeleteMapping("/api/decks/{deckId}/cards/{cardId}")
+    public void deleteCard(@PathVariable(value = "deckId") Long deckId, @PathVariable(value = "cardId") Long cardId) {
+        cardService.deleteCard(deckId, cardId);
+    }
+
 }

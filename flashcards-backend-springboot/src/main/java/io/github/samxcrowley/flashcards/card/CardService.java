@@ -37,4 +37,22 @@ public class CardService {
         }
     }
 
+    public void deleteCard(Long deckId, Long cardId) {
+
+        Optional<Deck> deckOpt = deckRepository.findById(deckId);
+        Optional<Card> cardOpt = cardRepository.findByIdAndDeckId(cardId, deckId);
+
+        if (deckOpt.isPresent() && cardOpt.isPresent()) {
+            Deck deck = deckOpt.get();
+            deck.setNumCards(deck.getNumCards() - 1);
+            Card cardToDelete = cardOpt.get();
+            cardRepository.delete(cardToDelete);
+        } else if (deckOpt.isEmpty()) {
+            throw new ResourceNotFoundException("Deck with id " + deckId + " not found when attempting to delete a card.");
+        } else {
+            throw new ResourceNotFoundException("Card with id " + cardId + " in deck with id " + deckId + " not found when attempting to delete the card.");
+        }
+
+    }
+
 }
