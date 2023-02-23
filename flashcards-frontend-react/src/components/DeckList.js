@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default class DeckList extends React.Component {
@@ -32,7 +32,7 @@ export default class DeckList extends React.Component {
                                     <Link to={`/editDeck/${value.id}`}>
                                         <button className="text-right font-semibold bg-slate-600 px-5 mt-3 h-8 text-white rounded">Edit</button>
                                     </Link>
-                                    <Link to="/card">
+                                    <Link to={`/study/${value.id}`}>
                                         <button className="text-right font-semibold bg-slate-600 px-5 mt-3 h-8 text-white rounded">Study</button>
                                     </Link>
                                 </div>

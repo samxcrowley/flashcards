@@ -4,7 +4,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import CardPage from "./pages/CardPage";
+import StudyPage from "./pages/StudyPage";
 import EditDeckPage from "./pages/EditDeckPage";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/card" element={<CardPage />} />
+                    <Route path="/study/:deckId" element={<StudyPage />} />
                     <Route path="/editDeck/:deckId" element={<EditDeckPage />} />
                 </Routes>
             </div>

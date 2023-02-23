@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 
-export default class CardPage extends React.Component {
+export default class StudyPage extends React.Component {
 
     // need reference to current card (card ID)
     // so that can send back data about user's response
