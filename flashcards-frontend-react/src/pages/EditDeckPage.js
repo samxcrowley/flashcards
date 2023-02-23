@@ -31,7 +31,7 @@ function EditDeckPage() {
     }
 
     return(
-        <div className="mt-8 pt-4 w-1/2 m-auto bg-slate-100 rounded shadow">
+        <div className="mt-8 pt-4 w-1/2 m-auto bg-slate-200 rounded shadow">
             {deck &&
                 <div className="mb-5 text-2xl font-bold text-slate-800">{deck.name}</div>
             }
@@ -42,7 +42,7 @@ function EditDeckPage() {
             <div className="mb-5">
                 <AddCardForm />
             </div>
-            <div className="bg-slate-200 border-10 py-5">
+            <div className="bg-slate-300 border-10 py-5">
                 {cards.length === 0 &&
                     <div>No cards in this deck yet.</div>
                 }
@@ -58,14 +58,14 @@ function EditDeckPage() {
                         <tbody>
                             {cards.map((value) => {
                                 return(
-                                    <tr className="even:bg-slate-300 text-left">
+                                    <tr className="even:bg-slate-400 text-left">
                                         <td className="px-5 py-2">{value.frontText}</td>
                                         <td className="px-5 py-2">{value.backText}</td>
                                         <td className="px-3 py-2">
-                                            <button className="font-semibold bg-slate-400 rounded text-white px-2">Edit</button>
+                                            <button className="font-semibold bg-slate-500 rounded text-white px-2">Edit</button>
                                         </td>
                                         <td className="px-1 py-2">
-                                            <button className="font-semibold bg-slate-400 rounded text-white px-2" onClick={deleteCard.bind(null, value.id)}>Delete</button>
+                                            <button className="font-semibold bg-slate-500 mr-1 rounded text-white px-2" onClick={deleteCard.bind(null, value.id)}>Delete</button>
                                         </td>
                                     </tr>
                                 );

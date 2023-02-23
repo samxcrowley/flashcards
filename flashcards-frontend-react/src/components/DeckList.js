@@ -25,7 +25,7 @@ export default class DeckList extends React.Component {
                 <div className="flex flex-wrap justify-center">
                     {this.state.decks.map((value) => {
                         return(
-                            <div className="bg-slate-300 px-5 pb-4 pt-5 rounded mx-3 my-3 shadow-md w-72 text-left text-black">
+                            <div className="bg-slate-300 px-5 pb-4 pt-5 rounded mx-3 my-3 shadow-sm w-72 text-left text-black">
                                 <p className="text-xl font-semibold mb-5">{value.name}</p>
                                 <p className="mb-5">Number of cards: {value.numCards}</p>
                                 <div className="flex items-center justify-between">
