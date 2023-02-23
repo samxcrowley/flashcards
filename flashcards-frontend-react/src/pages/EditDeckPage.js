@@ -23,6 +23,13 @@ function EditDeckPage() {
 
     }, []);
 
+    const deleteCard = (cardId) => {
+
+        axios.delete("/api/decks/" + deckId + "/cards/" + cardId);
+        window.location.reload(false);
+
+    }
+
     return(
         <div className="mt-8 pt-4 w-1/2 m-auto bg-slate-100 rounded shadow">
             {deck &&
@@ -58,7 +65,7 @@ function EditDeckPage() {
                                             <button className="font-semibold bg-slate-400 rounded text-white px-2">Edit</button>
                                         </td>
                                         <td className="px-1 py-2">
-                                            <button className="font-semibold bg-slate-400 rounded text-white px-2">Delete</button>
+                                            <button className="font-semibold bg-slate-400 rounded text-white px-2" onClick={deleteCard.bind(null, value.id)}>Delete</button>
                                         </td>
                                     </tr>
                                 );
