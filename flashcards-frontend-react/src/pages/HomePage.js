@@ -16,16 +16,18 @@ export default class HomePage extends React.Component {
         return(
             <div className="bg-white h-screen">
                 <div className="py-24 m-auto">
-                    <div className="text-black text-3xl font-semibold">
+                    <div className="pb-12 text-black text-2xl font-semibold">
                         Your decks
                     </div>
                     <DeckList />
-                    {this.state.addingDeck &&
-                        <AddDeckForm />
-                    }
-                    {!this.state.addingDeck &&
-                        <button className="font-semibold bg-myorange-600 rounded text-white px-5 py-2" onClick={this.addDeck.bind(null, true)}>Add deck</button>
-                    }
+                    <div className="mt-8">
+                        {this.state.addingDeck &&
+                            <AddDeckForm />
+                        }
+                        {!this.state.addingDeck &&
+                            <button className="font-semibold bg-slate-400 rounded text-white px-5 py-2" onClick={this.addDeck.bind(null, true)}>Add deck</button>
+                        }
+                    </div>
                 </div>
             </div>
         );
