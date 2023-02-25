@@ -7,6 +7,8 @@ import io.github.samxcrowley.flashcards.deck.Deck;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table
 public class Card {
@@ -17,6 +19,7 @@ public class Card {
     private Long id;
     private String frontText;
     private String backText;
+    private LocalDateTime lastReviewed;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "deck_id", nullable = false)
@@ -26,15 +29,17 @@ public class Card {
 
     public Card() {}
 
-    public Card(Long id, String frontText, String backText) {
+    public Card(Long id, String frontText, String backText, LocalDateTime lastReviewed) {
         this.id = id;
         this.frontText = frontText;
         this.backText = backText;
+        this.lastReviewed = lastReviewed;
     }
 
-    public Card(String frontText, String backText) {
+    public Card(String frontText, String backText, LocalDateTime lastReviewed) {
         this.frontText = frontText;
         this.backText = backText;
+        this.lastReviewed = lastReviewed;
     }
 
     public Deck getDeck() {
@@ -69,12 +74,22 @@ public class Card {
         this.backText = backText;
     }
 
+    public LocalDateTime getLastReviewed() {
+        return lastReviewed;
+    }
+
+    public void setLastReviewed(LocalDateTime lastStudied) {
+        this.lastReviewed = lastStudied;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
                 "id=" + id +
                 ", frontText='" + frontText + '\'' +
                 ", backText='" + backText + '\'' +
+                ", lastReviewed=" + lastReviewed +
+                ", deck=" + deck +
                 '}';
     }
 

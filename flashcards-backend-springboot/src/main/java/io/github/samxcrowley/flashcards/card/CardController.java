@@ -3,6 +3,8 @@ package io.github.samxcrowley.flashcards.card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin
@@ -29,6 +31,11 @@ public class CardController {
     @DeleteMapping("/api/decks/{deckId}/cards/{cardId}")
     public void deleteCard(@PathVariable(value = "deckId") Long deckId, @PathVariable(value = "cardId") Long cardId) {
         cardService.deleteCard(deckId, cardId);
+    }
+
+    @PutMapping("/api/decks/{deckId}/cards/{cardId}/review/{reviewDifficulty}")
+    public void reviewCard(@PathVariable(value = "deckId") Long deckId, @PathVariable(value = "cardId") Long cardId, @PathVariable(value = "reviewDifficulty") Integer reviewDifficulty) {
+        cardService.reviewCard(deckId, cardId, LocalDateTime.now(), reviewDifficulty);
     }
 
 }

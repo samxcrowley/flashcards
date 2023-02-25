@@ -25,7 +25,9 @@ function StudyPage() {
         setFlipped(true);
     }
 
-    const nextCard = () => {
+    const nextCard = (reviewDifficulty) => {
+
+        axios.put("/api/decks/" + deckId + "/cards/" + cards[currentCardIndex].id + "/review/" + reviewDifficulty);
 
         let oldIndex = currentCardIndex;
 
@@ -60,16 +62,16 @@ function StudyPage() {
                     }
                     {flipped &&
                         <div className="w-96 flex flex-row justify-between">
-                            <button className="rounded px-2 py-1 bg-red-500 text-white font-semibold text-lg" onClick={() => nextCard()}>
+                            <button className="rounded px-2 py-1 bg-red-500 text-white font-semibold text-lg" onClick={nextCard.bind(null, 1)}>
                                 Again (1)
                             </button>
-                            <button className="rounded px-2 py-1 bg-orange-500 text-white font-semibold text-lg" onClick={() => nextCard()}>
+                            <button className="rounded px-2 py-1 bg-orange-500 text-white font-semibold text-lg" onClick={nextCard.bind(null, 2)}>
                                 Hard (2)
                             </button>
-                            <button className="rounded px-2 py-1 bg-yellow-500 text-white font-semibold text-lg" onClick={() => nextCard()}>
+                            <button className="rounded px-2 py-1 bg-yellow-500 text-white font-semibold text-lg" onClick={nextCard.bind(null, 3)}>
                                 Good (3)
                             </button>
-                            <button className="rounded px-2 py-1 bg-green-500 text-white font-semibold text-lg" onClick={() => nextCard()}>
+                            <button className="rounded px-2 py-1 bg-green-500 text-white font-semibold text-lg" onClick={nextCard.bind(null, 4)}>
                                 Easy (4)
                             </button>
                         </div>
