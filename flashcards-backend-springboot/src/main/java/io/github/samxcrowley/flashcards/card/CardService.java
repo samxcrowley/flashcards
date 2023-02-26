@@ -36,9 +36,9 @@ public class CardService {
 
             card.setDeck(deck);
 
-            card.setLastReviewed(LocalDateTime.now());
             card.setFactor(0);
             card.setLastInterval(0);
+            card.setNextReviewDueDate(LocalDateTime.now());
 
             cardRepository.save(card);
 
