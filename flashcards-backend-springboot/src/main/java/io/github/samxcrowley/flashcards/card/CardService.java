@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,7 +122,21 @@ public class CardService {
 
         List<Card> allCards = getAllCardsByDeckId(deckId);
 
+        Collections.sort(allCards);
+
+        LocalDateTime now = LocalDateTime.now();
         List<Card> dueCards = new ArrayList<>();
+
+        // get all cards with a review due date in the past
+        for (Card card : allCards) {
+
+            if (card.getNextReviewDueDate().isBefore(now)) {
+                dueCards.add(card);
+            } else {
+                break;
+            }
+
+        }
 
         return dueCards;
 
