@@ -14,7 +14,8 @@ function StudyPage() {
 
     useEffect(() => {
 
-        axios.get("/api/decks/" + deckId + "/cards")
+        // get all cards due in this deck
+        axios.get("/api/decks/" + deckId + "/dueCards")
             .then(response => {
                 setCards(response.data);
             });
