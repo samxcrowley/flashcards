@@ -6,6 +6,8 @@ import io.github.samxcrowley.flashcards.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +30,18 @@ public class CardService {
         Optional<Deck> deckOpt = deckRepository.findById(deckId);
 
         if (deckOpt.isPresent()) {
+
             Deck deck = deckOpt.get();
             deck.setNumCards(deck.getNumCards() + 1);
+
             card.setDeck(deck);
+
+            card.setLastReviewed(LocalDateTime.now());
+            card.setFactor(0);
+            card.setLastInterval(0);
+
             cardRepository.save(card);
+
         } else {
             throw new ResourceNotFoundException("Deck with id " + deckId + " not found when attempting to add new card.");
         }
@@ -63,10 +73,42 @@ public class CardService {
         if (cardOpt.isPresent()) {
 
             Card card = cardOpt.get();
-            card.setLastReviewed(reviewTime);
+            LocalDateTime now = LocalDateTime.now();
 
-            // TODO: properly handle difficulty logic here
-            System.out.println("Card " + card.getFrontText() + " reviewed at " + card.getLastReviewed().toString() + " with difficulty " + reviewDifficulty);
+            // calculate when card is next due for a review, based off of difficulty and current date
+            // informed by this GitHub post by @fasiha on how Anki calculates intervals for cards:
+            // https://gist.github.com/fasiha/31ce46c36371ff57fdbc1254af424174
+
+            // number of days between when card was due for a review and now
+            float delayDays = (float) Duration.between(card.getNextReviewDueDate(), now).toDays();
+
+            // calculate intervals (in days) for each difficulty 1-4
+            float factor = (float) card.getFactor();
+
+            int interval1 = card.getLastInterval();
+            int interval2 = (int) Math.max(interval1 + 1, (interval1 + delayDays / 4) * 1.2);
+            int interval3 = (int) Math.max(interval2 + 1, (interval1 + delayDays / 2) * (factor / 1000));
+            int interval4 = (int) Math.max(interval3 + 1, (interval1 + delayDays) * (factor / 1000) * 1.3);
+
+            // set review intervals and new factor
+            switch (reviewDifficulty) {
+                case 1 -> {
+                    card.setNextReviewDueDate(now.plusDays(interval1));
+                    card.setFactor((int) Math.max(1300, factor - 200));
+                }
+                case 2 -> {
+                    card.setNextReviewDueDate(now.plusDays(interval2));
+                    card.setFactor((int) Math.max(1300, factor - 150));
+                }
+                case 3 -> {
+                    card.setNextReviewDueDate(now.plusDays(interval3));
+                    // (factor is unchanged here)
+                }
+                case 4 -> {
+                    card.setNextReviewDueDate(now.plusDays(interval4));
+                    card.setFactor((int) Math.max(1300, factor + 150));
+                }
+            }
 
             cardRepository.save(card);
 

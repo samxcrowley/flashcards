@@ -27,6 +27,17 @@ public class Card {
     @JsonIgnore
     private Deck deck;
 
+    // below are the properties used for spaced repetition
+
+    // a measure of how well the user has memorised this card (0-1300)
+    private int factor;
+
+    // when the next review is due
+    private LocalDateTime nextReviewDueDate;
+
+    // the last interval between reviews
+    private int lastInterval;
+
     public Card() {}
 
     public Card(Long id, String frontText, String backText, LocalDateTime lastReviewed) {
@@ -80,6 +91,30 @@ public class Card {
 
     public void setLastReviewed(LocalDateTime lastStudied) {
         this.lastReviewed = lastStudied;
+    }
+
+    public int getFactor() {
+        return factor;
+    }
+
+    public void setFactor(int factor) {
+        this.factor = factor;
+    }
+
+    public LocalDateTime getNextReviewDueDate() {
+        return nextReviewDueDate;
+    }
+
+    public void setNextReviewDueDate(LocalDateTime nextReviewDueDate) {
+        this.nextReviewDueDate = nextReviewDueDate;
+    }
+
+    public int getLastInterval() {
+        return lastInterval;
+    }
+
+    public void setLastInterval(int lastInterval) {
+        this.lastInterval = lastInterval;
     }
 
     @Override
