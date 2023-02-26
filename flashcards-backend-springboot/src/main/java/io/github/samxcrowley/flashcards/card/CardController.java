@@ -38,4 +38,9 @@ public class CardController {
         cardService.reviewCard(deckId, cardId, LocalDateTime.now(), reviewDifficulty);
     }
 
+    @GetMapping("/api/decks/{deckId}/dueCards")
+    public List<Card> getCardsDueForReview(@PathVariable(value = "deckId") Long deckId) {
+        return cardService.getCardsDueForReview(deckId);
+    }
+
 }

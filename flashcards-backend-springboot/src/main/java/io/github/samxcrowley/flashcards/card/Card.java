@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-public class Card {
+public class Card implements Comparable<Card> {
 
     @Id
     @SequenceGenerator(name = "card_sequence", sequenceName = "card_sequence", allocationSize = 1)
@@ -51,6 +51,11 @@ public class Card {
         this.frontText = frontText;
         this.backText = backText;
         this.lastReviewed = lastReviewed;
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        return nextReviewDueDate.compareTo(o.nextReviewDueDate);
     }
 
     public Deck getDeck() {
